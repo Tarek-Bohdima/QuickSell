@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_exit_label">Ieșire</string>
+    <string name="content_description_language_selection">Alegerea limbii</string>
+    <string name="contact">Contactează-ne</string>
+    <string name="email_subject">părere</string>
+</resources>

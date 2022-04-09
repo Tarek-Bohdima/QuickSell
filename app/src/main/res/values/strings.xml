@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">QuickSell</string>
+    <string name="app_name" translatable="false">QuickSell</string>
+
+    <string name="button_label_quick_sell" translatable="false">Quick Sell</string>
+    <string name="button_exit_label">Exit</string>
+    <string name="content_description_token_logo" translatable="false">Token Logo</string>
+    <string name="content_description_language_selection">language Selection</string>
+    <string name="contact">Contact us</string>
+    <string name="email_subject">Feedback</string>
+
+    <string-array name="Languages">
+        <item>Select Language</item>
+        <item>English</item>
+        <item>Română</item>
+    </string-array>
 </resources>
