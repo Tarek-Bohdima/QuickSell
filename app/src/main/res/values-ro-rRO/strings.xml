@@ -4,4 +4,7 @@
     <string name="content_description_language_selection">Alegerea limbii</string>
     <string name="contact">Contactează-ne</string>
     <string name="email_subject">părere</string>
+    <string name="text_view_header">Produse</string>
+    <string name="language_selector_label">Selecteaza limba</string>
+
 </resources>
