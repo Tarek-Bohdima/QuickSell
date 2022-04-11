@@ -1,7 +1,7 @@
 package com.token.quicksell.ui
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +10,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import com.token.quicksell.MainActivity
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
-    lateinit var binding: FragmentHomeBinding
-    val prefs: SharedPreferences? = activity?.getPreferences(Context.MODE_PRIVATE)
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +25,9 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         setSpinner()
+        binding.buttonExit.setOnClickListener {
+            activity?.finish()
+        }
         return binding.root
     }
 
@@ -46,21 +49,31 @@ class HomeFragment : Fragment() {
                 position: Int,
                 id: Long,
             ) {
+                val prefs =
+                    requireActivity().getSharedPreferences(getString(R.string.shared_preference_key),
+                        Context.MODE_PRIVATE)
+                        ?: return
                 when (position) {
                     0 -> {}
                     1 -> {
-                        prefs?.edit { putString("LANGUAGE", "en") }
-
+                        prefs.edit { putString(getString(R.string.saved_language_key), "en") }
+                            .also { recreateFragment() }
                     }
                     2 -> {
-                        prefs?.edit { putString("LANGUAGE", "ro") }
+                        prefs.edit { putString(getString(R.string.saved_language_key), "ro") }
+                            .also { recreateFragment() }
                     }
                 }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
         }
+    }
+
+    private fun recreateFragment() {
+        requireActivity().onBackPressed()
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
     }
 }

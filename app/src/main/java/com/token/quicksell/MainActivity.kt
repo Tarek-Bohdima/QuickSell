@@ -11,12 +11,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.token.quicksell.databinding.ActivityMainBinding
-import com.token.quicksell.utils.setAppLocale
+import com.token.quicksell.utils.ContextUtils
+import timber.log.Timber
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(){
 
     private lateinit var drawerLayout: DrawerLayout
-    var savedLang = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding =
@@ -33,9 +36,6 @@ class MainActivity : AppCompatActivity() {
             composeEmail()
             return@setNavigationItemSelectedListener true
         }
-        val prefs = this.getPreferences(Context.MODE_PRIVATE)
-        val selectedLanguage = prefs.getString("LANGUAGE", null)
-        savedLang = selectedLanguage.toString()
     }
 
     private fun composeEmail() {
@@ -52,13 +52,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context) {
-//        savedLang = prefs.getString("LANGUAGE", "en")!!
-        super.attachBaseContext(ContextWrapper(newBase.setAppLocale(savedLang)))
+        val preferences = newBase.getSharedPreferences(
+            newBase.getString(R.string.shared_preference_key),
+            Context.MODE_PRIVATE)
+        val language = preferences.getString(
+            newBase.getString(R.string.saved_language_key)
+            , "en")
+        val local = Locale(language.toString())
+        Timber.d("attachBaseContext: lang = $language")
+        Timber.d("---------------------------")
+        val localUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, local)
+        super.attachBaseContext(localUpdatedContext)
     }
-
-    /* override fun onAttachedToWindow() {
-         super.onAttachedToWindow()
-         // Will give the direction of the layout depending of the Locale you've just set
-         window.decorView.layoutDirection = Locale.getDefault().layoutDirection
-     }*/
 }

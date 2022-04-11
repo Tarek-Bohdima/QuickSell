@@ -1,65 +1,35 @@
 package com.token.quicksell.utils
 
 import android.content.Context
+import android.content.ContextWrapper
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
+import android.os.LocaleList
 import java.util.*
 
 
-fun Context.setAppLocale(language: String): Context {
-    val locale = Locale(language)
-    Locale.setDefault(locale)
-    val config = resources.configuration
-    config.setLocale(locale)
-    config.setLayoutDirection(locale)
-    return createConfigurationContext(config)
-}
-/*
-object RuntimeLocaleChanger {
+class ContextUtils(base: Context) : ContextWrapper(base) {
 
-    fun wrapContext(context: Context): Context {
-        val savedLocale =
-            createLocaleFromSavedLanguage(context) // load the user picked language from persistence (e.g SharedPreferences)
-                ?: return context // else return the original untouched context
+    companion object {
 
-        // as part of creating a new context that contains the new locale we also need to override the default locale.
-        Locale.setDefault(savedLocale)
-
-        // create new configuration with the saved locale
-        val newConfig = Configuration()
-        newConfig.setLocale(savedLocale)
-
-        return context.createConfigurationContext(newConfig)
-    }
-
-    private fun createLocaleFromSavedLanguage(context: Context): Locale {
-        val sharedPrefs = context.getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE)
-        val savedLanguage = sharedPrefs.getString("LANGUAGE", "en")
-        return Locale(savedLanguage)
-    }
-
-    fun overrideLocale(context: Context) {
-
-        val savedLocale =
-            createLocaleFromSavedLanguage(context) // load the user picked language from persistence (e.g SharedPreferences)
-                ?: return // nothing to do in this case
-
-        // as part of creating a new context that contains the new locale we also need to override the default locale.
-        Locale.setDefault(savedLocale)
-
-        // create new configuration with the saved locale
-        val newConfig = Configuration()
-        newConfig.setLocale(savedLocale)
-
-        // override the locale on the given context (Activity, Fragment, etc...)
-//        context.resources.updateConfiguration(newConfig, context.resources.displayMetrics)
-
-
-
-        // override the locale on the application context
-        if (context != context.applicationContext) {
-            context.applicationContext.resources.run {
-                updateConfiguration(newConfig,
-                    displayMetrics)
+        fun updateLocale(c: Context, localeToSwitchTo: Locale): ContextWrapper {
+            var context = c
+            val resources: Resources = context.resources
+            val configuration: Configuration = resources.configuration
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                val localeList = LocaleList(localeToSwitchTo)
+                LocaleList.setDefault(localeList)
+                configuration.setLocales(localeList)
+            } else {
+                configuration.locale = localeToSwitchTo
             }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                context = context.createConfigurationContext(configuration)
+            } else {
+                resources.updateConfiguration(configuration, resources.displayMetrics)
+            }
+            return ContextUtils(context)
         }
     }
-}*/
+}
