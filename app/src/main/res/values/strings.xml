@@ -13,5 +13,6 @@
     <string name="language_selector_label">Select Language</string>
     <string name="english" translatable="false">English</string>
     <string name="romanian" translatable="false">Română</string>
+    <string name="home_fragment_label" translatable="false">Home</string>
 
 </resources>

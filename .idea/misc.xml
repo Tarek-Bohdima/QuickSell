@@ -8,7 +8,12 @@
         <entry key="app/src/main/res/drawable/logo_token.xml" value="0.2215" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3507692307692308" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3507692307692308" />
+        <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_quick_sell.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/logo_token.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/products_list.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/text_item_view.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.35625" />
       </map>
     </option>
