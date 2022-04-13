@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_payment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.payment.PaymentFragment">
+
+        <include
+            android:id="@+id/logo_included_payment"
+            layout="@layout/logo_token" />
+
+        <TextView
+            android:id="@+id/pay_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_regular"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/payment_label"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_included_payment" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="image_button_cash,image_button_card" />
+
+        <ImageButton
+            android:id="@+id/image_button_cash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:contentDescription="@string/image_button_cash_content_description"
+            android:src="@drawable/cash_image"
+            app:layout_constraintEnd_toStartOf="@+id/image_button_card"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pay_label" />
+
+        <ImageButton
+            android:id="@+id/image_button_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:contentDescription="@string/image_button_card_content_description"
+            android:src="@drawable/card_image"
+            app:layout_constraintBottom_toBottomOf="@+id/image_button_cash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/image_button_cash"
+            app:layout_constraintTop_toTopOf="@+id/image_button_cash" />
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/button_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

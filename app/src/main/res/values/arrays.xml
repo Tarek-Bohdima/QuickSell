@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Languages">
+        <item>@string/language_selector_label</item>
+        <item>@string/english</item>
+        <item>@string/romanian</item>
+    </string-array>
+</resources>

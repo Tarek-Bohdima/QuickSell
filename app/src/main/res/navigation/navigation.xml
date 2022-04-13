@@ -7,7 +7,46 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.token.quicksell.ui.HomeFragment"
+        android:name="com.token.quicksell.ui.home.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_quickSellFragment"
+            app:destination="@id/quickSellFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quickSellFragment"
+        android:name="com.token.quicksell.ui.sell.QuickSellFragment"
         android:label="@string/button_label_quick_sell"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_quick_sell">
+        <action
+            android:id="@+id/action_quickSellFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.token.quicksell.ui.payment.PaymentFragment"
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment">
+        <action
+            android:id="@+id/action_paymentFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.token.quicksell.ui.payment.SuccessFragment"
+        android:label="@string/label_success_fragment"
+        tools:layout="@layout/fragment_success" >
+        <action
+            android:id="@+id/action_successFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

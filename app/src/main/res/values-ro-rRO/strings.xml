@@ -4,4 +4,14 @@
     <string name="content_description_language_selection">Alegerea limbii</string>
     <string name="contact">Contactează-ne</string>
     <string name="email_subject">părere</string>
+    <string name="text_view_header">Produse</string>
+    <string name="language_selector_label">Selecteaza limba</string>
+    <string name="button_pay">Plătește</string>
+    <string name="payment_label">Plătește cu</string>
+    <string name="button_cancel">Anulare</string>
+    <string name="content_description_token_logo">Token siglă</string>
+    <string name="image_button_cash_content_description">Opțiune de plată în numerar</string>
+    <string name="image_button_card_content_description">Opțiune de plată cu cardul</string>
+    <string name="button_ok">OK</string>
+
 </resources>

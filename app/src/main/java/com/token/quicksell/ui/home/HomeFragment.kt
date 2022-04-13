@@ -1,4 +1,4 @@
-package com.token.quicksell.ui
+package com.token.quicksell.ui.home
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.token.quicksell.MainActivity
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentHomeBinding
@@ -28,6 +29,14 @@ class HomeFragment : Fragment() {
         binding.buttonExit.setOnClickListener {
             activity?.finish()
         }
+
+//        binding.buttonQuickSell.setOnClickListener { view: View ->
+//            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_quickSellFragment)
+//        }
+        binding.buttonQuickSell.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_quickSellFragment)
+        )
+
         return binding.root
     }
 

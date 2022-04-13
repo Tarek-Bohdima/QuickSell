@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.token.quicksell.databinding.ActivityMainBinding
 import com.token.quicksell.utils.ContextUtils
@@ -16,7 +17,7 @@ import timber.log.Timber
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -25,7 +26,10 @@ class MainActivity : AppCompatActivity(){
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout
-        val navController = this.findNavController(R.id.myNavHostFragment)
+//        val navController = this.findNavController(R.id.myNavHostFragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
@@ -35,6 +39,16 @@ class MainActivity : AppCompatActivity(){
             drawerLayout.closeDrawers()
             composeEmail()
             return@setNavigationItemSelectedListener true
+        }
+
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            if (destination.id == controller.graph.startDestinationId ||
+                destination.id == R.id.quickSellFragment
+            ) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
         }
     }
 
@@ -56,8 +70,7 @@ class MainActivity : AppCompatActivity(){
             newBase.getString(R.string.shared_preference_key),
             Context.MODE_PRIVATE)
         val language = preferences.getString(
-            newBase.getString(R.string.saved_language_key)
-            , "en")
+            newBase.getString(R.string.saved_language_key), "en")
         val local = Locale(language.toString())
         Timber.d("attachBaseContext: lang = $language")
         Timber.d("---------------------------")
