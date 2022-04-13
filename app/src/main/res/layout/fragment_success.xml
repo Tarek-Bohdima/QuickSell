@@ -8,30 +8,33 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout_quicksell"
+        android:id="@+id/constraint_layout_success"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.sell.QuickSellFragment">
+        tools:context=".ui.payment.SuccessFragment">
+
+        <!-- TODO: Update blank fragment layout -->
 
         <TextView
-            android:id="@+id/products_textview"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:text="@string/text_view_header"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            android:text="Success"
+            app:layout_constraintBottom_toTopOf="@+id/button_ok"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button_pay"
+            android:id="@+id/button_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/button_pay"
+            android:text="@string/button_ok"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

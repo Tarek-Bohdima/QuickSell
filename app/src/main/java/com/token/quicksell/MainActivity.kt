@@ -17,7 +17,7 @@ import timber.log.Timber
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -40,6 +40,16 @@ class MainActivity : AppCompatActivity(){
             composeEmail()
             return@setNavigationItemSelectedListener true
         }
+
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            if (destination.id == controller.graph.startDestinationId ||
+                destination.id == R.id.quickSellFragment
+            ) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+        }
     }
 
     private fun composeEmail() {
@@ -60,8 +70,7 @@ class MainActivity : AppCompatActivity(){
             newBase.getString(R.string.shared_preference_key),
             Context.MODE_PRIVATE)
         val language = preferences.getString(
-            newBase.getString(R.string.saved_language_key)
-            , "en")
+            newBase.getString(R.string.saved_language_key), "en")
         val local = Locale(language.toString())
         Timber.d("attachBaseContext: lang = $language")
         Timber.d("---------------------------")

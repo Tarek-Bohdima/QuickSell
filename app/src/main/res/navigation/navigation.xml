@@ -27,5 +27,26 @@
         android:id="@+id/paymentFragment"
         android:name="com.token.quicksell.ui.payment.PaymentFragment"
         android:label="Payment"
-        tools:layout="@layout/fragment_payment"/>
+        tools:layout="@layout/fragment_payment">
+        <action
+            android:id="@+id/action_paymentFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.token.quicksell.ui.payment.SuccessFragment"
+        android:label="@string/label_success_fragment"
+        tools:layout="@layout/fragment_success" >
+        <action
+            android:id="@+id/action_successFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>
