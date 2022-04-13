@@ -13,5 +13,8 @@
     <string name="image_button_cash_content_description">Opțiune de plată în numerar</string>
     <string name="image_button_card_content_description">Opțiune de plată cu cardul</string>
     <string name="button_ok">OK</string>
+    <string name="label_fragment_success">Starea plății</string>
+    <string name="image_success_content_description">Bifă de succes</string>
+    <string name="label_fragment_payment">Plată</string>
 
 </resources>

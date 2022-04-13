@@ -13,13 +13,16 @@
     <string name="language_selector_label">Select Language</string>
     <string name="english" translatable="false">English</string>
     <string name="romanian" translatable="false">Română</string>
-    <string name="home_fragment_label" translatable="false">Home</string>
+    <string name="label_fragment_home" translatable="false">Home</string>
     <string name="button_pay">Pay</string>
     <string name="payment_label">Pay with:</string>
     <string name="button_cancel">Cancel</string>
     <string name="image_button_cash_content_description">Cash payment option</string>
     <string name="image_button_card_content_description">Card payment option</string>
     <string name="button_ok">OK</string>
-    <string name="label_success_fragment">Payment Status</string>
+    <string name="label_fragment_success">Payment Status</string>
+    <string name="image_success_content_description">Success Check mark</string>
+    <string name="label_fragment_payment">Payment</string>
+    <string name="label_fragment_quicksell" translatable="false">Quick Sell</string>
 
 </resources>

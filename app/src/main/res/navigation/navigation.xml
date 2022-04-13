@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.token.quicksell.ui.home.HomeFragment"
-        android:label="@string/home_fragment_label"
+        android:label="@string/label_fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_quickSellFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/quickSellFragment"
         android:name="com.token.quicksell.ui.sell.QuickSellFragment"
-        android:label="@string/button_label_quick_sell"
+        android:label="@string/label_fragment_quicksell"
         tools:layout="@layout/fragment_quick_sell">
         <action
             android:id="@+id/action_quickSellFragment_to_paymentFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.token.quicksell.ui.payment.PaymentFragment"
-        android:label="Payment"
+        android:label="@string/label_fragment_payment"
         tools:layout="@layout/fragment_payment">
         <action
             android:id="@+id/action_paymentFragment_to_successFragment"
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/successFragment"
         android:name="com.token.quicksell.ui.payment.SuccessFragment"
-        android:label="@string/label_success_fragment"
+        android:label="@string/label_fragment_success"
         tools:layout="@layout/fragment_success" >
         <action
             android:id="@+id/action_successFragment_to_homeFragment"
