@@ -16,5 +16,6 @@
     <string name="label_fragment_success">Starea plății</string>
     <string name="image_success_content_description">Bifă de succes</string>
     <string name="label_fragment_payment">Plată</string>
+    <string name="spinner_flag_content_description">Steagul de țară al Limbii</string>
 
 </resources>

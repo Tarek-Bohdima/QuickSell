@@ -7,17 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.token.quicksell.MainActivity
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentHomeBinding
+import com.token.quicksell.model.Country
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+
+    private val spinnerArraylist = ArrayList<Country>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +28,14 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        setSpinner()
+
+        initList()
+
+        setCustomSpinner()
         binding.buttonExit.setOnClickListener {
             activity?.finish()
         }
 
-//        binding.buttonQuickSell.setOnClickListener { view: View ->
-//            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_quickSellFragment)
-//        }
         binding.buttonQuickSell.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_quickSellFragment)
         )
@@ -40,16 +43,18 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun setSpinner() {
-        val spinner = binding.spinnerLanguage
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.Languages,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+    private fun initList() {
+        spinnerArraylist.apply {
+            add(Country(0, getString(R.string.language_selector_label)))
+            add(Country(R.drawable.en, getString(R.string.english)))
+            add(Country(R.drawable.ro, getString(R.string.romanian)))
         }
+    }
+
+    private fun setCustomSpinner() {
+        val adapter = SpinnerArrayAdapter(requireContext(), spinnerArraylist)
+        val spinner = binding.spinnerLanguage
+        spinner.adapter = adapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
