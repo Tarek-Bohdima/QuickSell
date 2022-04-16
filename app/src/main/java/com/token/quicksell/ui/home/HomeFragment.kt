@@ -2,6 +2,7 @@ package com.token.quicksell.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.token.quicksell.MainActivity
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentHomeBinding
 import com.token.quicksell.model.Country
+import com.token.quicksell.utils.putSelectedLanguageToPrefs
 
 
 class HomeFragment : Fragment() {
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+
         initList()
 
         setCustomSpinner()
@@ -36,18 +40,21 @@ class HomeFragment : Fragment() {
             activity?.finish()
         }
 
-        binding.buttonQuickSell.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_quickSellFragment)
-        )
+        binding.buttonQuickSell.setOnClickListener {
+            it.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToQuickSellFragment())
+        }
 
         return binding.root
     }
 
     private fun initList() {
-        spinnerArraylist.apply {
-            add(Country(0, getString(R.string.language_selector_label)))
-            add(Country(R.drawable.en, getString(R.string.english)))
-            add(Country(R.drawable.ro, getString(R.string.romanian)))
+        if (spinnerArraylist.size == 0) {
+            spinnerArraylist.apply {
+                add(Country(0, getString(R.string.language_selector_label)))
+                add(Country(R.drawable.en, getString(R.string.english)))
+                add(Country(R.drawable.ro, getString(R.string.romanian)))
+            }
         }
     }
 
@@ -70,11 +77,11 @@ class HomeFragment : Fragment() {
                 when (position) {
                     0 -> {}
                     1 -> {
-                        prefs.edit { putString(getString(R.string.saved_language_key), "en") }
+                        prefs.edit { putSelectedLanguageToPrefs(getString(R.string.saved_language_key),"en") }
                             .also { recreateFragment() }
                     }
                     2 -> {
-                        prefs.edit { putString(getString(R.string.saved_language_key), "ro") }
+                        prefs.edit { putSelectedLanguageToPrefs(getString(R.string.saved_language_key),"ro") }
                             .also { recreateFragment() }
                     }
                 }
@@ -84,7 +91,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
     private fun recreateFragment() {
         requireActivity().onBackPressed()
         val intent = Intent(requireActivity(), MainActivity::class.java)

@@ -18,11 +18,74 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
+            android:padding="@dimen/padding_small"
             android:text="@string/text_view_header"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/recyclerview_products"
+            layout="@layout/products_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/products_textview" />
+
+        <ImageView
+            android:id="@+id/image_selected_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/selected_product_content_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerview_products"
+            tools:ignore="RedundantDescriptionCheck"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/product_text_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:constraint_referenced_ids="text_category,text_product"
+            app:layout_constraintBottom_toBottomOf="@+id/image_selected_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_selected_product"
+            app:layout_constraintTop_toTopOf="@+id/image_selected_product" />
+
+        <TextView
+            android:id="@+id/text_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/text_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_selected_product"
+            app:layout_constraintTop_toTopOf="@+id/image_selected_product"
+            tools:text="Sauces &amp; Oils" />
+
+        <TextView
+            android:id="@+id/text_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/image_selected_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_selected_product"
+            app:layout_constraintTop_toBottomOf="@+id/text_category"
+            tools:text="Olive Oil" />
 
         <Button
             android:id="@+id/button_pay"
@@ -33,5 +96,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
