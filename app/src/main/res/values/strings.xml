@@ -24,5 +24,7 @@
     <string name="image_success_content_description">Success Check mark</string>
     <string name="label_fragment_payment">Payment</string>
     <string name="label_fragment_quicksell" translatable="false">Quick Sell</string>
+    <string name="spinner_flag_content_description">Country flag of the Language</string>
+    <string name="selected_product_content_description">Selected product</string>
 
 </resources>

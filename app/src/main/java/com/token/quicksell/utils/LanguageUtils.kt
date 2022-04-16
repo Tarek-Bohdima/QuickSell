@@ -2,10 +2,12 @@ package com.token.quicksell.utils
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
+import com.token.quicksell.R
 import java.util.*
 
 
@@ -33,3 +35,8 @@ class ContextUtils(base: Context) : ContextWrapper(base) {
         }
     }
 }
+
+fun SharedPreferences.Editor.putSelectedLanguageToPrefs(prefsKey: String, lang: String) {
+    putString(prefsKey, lang)
+}
+
