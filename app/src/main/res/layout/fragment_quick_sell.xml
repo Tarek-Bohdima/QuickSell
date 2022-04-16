@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/recyclerview_products"
+            android:id="@+id/recyclerview_included"
             layout="@layout/products_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginTop="16dp"
             android:contentDescription="@string/selected_product_content_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerview_products"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerview_included"
             tools:ignore="RedundantDescriptionCheck"
             tools:srcCompat="@tools:sample/avatars" />
 

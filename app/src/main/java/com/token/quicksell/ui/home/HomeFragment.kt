@@ -2,7 +2,6 @@ package com.token.quicksell.ui.home
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.token.quicksell.MainActivity
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentHomeBinding
-import com.token.quicksell.model.Country
+import com.token.quicksell.domain.Country
 import com.token.quicksell.utils.putSelectedLanguageToPrefs
 
 
@@ -77,11 +75,17 @@ class HomeFragment : Fragment() {
                 when (position) {
                     0 -> {}
                     1 -> {
-                        prefs.edit { putSelectedLanguageToPrefs(getString(R.string.saved_language_key),"en") }
+                        prefs.edit {
+                            putSelectedLanguageToPrefs(getString(R.string.saved_language_key),
+                                "en")
+                        }
                             .also { recreateFragment() }
                     }
                     2 -> {
-                        prefs.edit { putSelectedLanguageToPrefs(getString(R.string.saved_language_key),"ro") }
+                        prefs.edit {
+                            putSelectedLanguageToPrefs(getString(R.string.saved_language_key),
+                                "ro")
+                        }
                             .also { recreateFragment() }
                     }
                 }
@@ -91,6 +95,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
     private fun recreateFragment() {
         requireActivity().onBackPressed()
         val intent = Intent(requireActivity(), MainActivity::class.java)

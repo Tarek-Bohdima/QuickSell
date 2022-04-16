@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.token.quicksell.R
-import com.token.quicksell.model.Product
+import com.token.quicksell.domain.Product
 
 class ProductsAdapter : RecyclerView.Adapter<TextItemViewHolder>() {
     var data = listOf<Product>()

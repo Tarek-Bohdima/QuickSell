@@ -1,4 +1,4 @@
-package com.token.quicksell.model
+package com.token.quicksell.domain
 
 data class Product(
     val id: Long,
