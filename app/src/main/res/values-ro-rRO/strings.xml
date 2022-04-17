@@ -18,5 +18,6 @@
     <string name="label_fragment_payment">Plată</string>
     <string name="spinner_flag_content_description">Steagul de țară al Limbii</string>
     <string name="selected_product_content_description">Produs selectat</string>
+    <string name="text_amount_label">Cantitate</string>
 
 </resources>

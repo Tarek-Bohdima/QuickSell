@@ -26,5 +26,7 @@
     <string name="label_fragment_quicksell" translatable="false">Quick Sell</string>
     <string name="spinner_flag_content_description">Country flag of the Language</string>
     <string name="selected_product_content_description">Selected product</string>
+    <string name="text_amount_number" translatable="false">0</string>
+    <string name="text_amount_label">Amount:</string>
 
 </resources>
