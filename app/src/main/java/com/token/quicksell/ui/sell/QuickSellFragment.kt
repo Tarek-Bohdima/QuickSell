@@ -14,7 +14,15 @@ import com.token.quicksell.databinding.FragmentQuickSellBinding
 class QuickSellFragment : Fragment() {
 
     private lateinit var binding: FragmentQuickSellBinding
-    private lateinit var viewModel: SellViewModel
+    private val viewModel: SellViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        ViewModelProvider(
+            this,
+            SellViewModel.Factory(activity.application)
+        )[SellViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +31,13 @@ class QuickSellFragment : Fragment() {
         binding = FragmentQuickSellBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel = ViewModelProvider(this)[SellViewModel::class.java]
+        val adapter = ProductsAdapter()
+
+        binding.recyclerviewIncluded.recyclerviewProducts.adapter = adapter
+
+        viewModel.products.observe(viewLifecycleOwner) {
+            adapter.data = it
+        }
 
         binding.buttonPay.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_quickSellFragment_to_paymentFragment)

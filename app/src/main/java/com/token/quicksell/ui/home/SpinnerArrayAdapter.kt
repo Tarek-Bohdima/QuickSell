@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.token.quicksell.R
-import com.token.quicksell.model.Country
+import com.token.quicksell.domain.Country
 
 class SpinnerArrayAdapter(context: Context, countryList: List<Country>) :
     ArrayAdapter<Country>(context, 0, countryList) {

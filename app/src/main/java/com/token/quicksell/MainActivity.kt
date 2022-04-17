@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.token.quicksell.databinding.ActivityMainBinding
+import com.token.quicksell.utils.Constants
 import com.token.quicksell.utils.ContextUtils
 import timber.log.Timber
 import java.util.*
@@ -72,8 +73,8 @@ class MainActivity : AppCompatActivity() {
         val language = preferences.getString(
             newBase.getString(R.string.saved_language_key), "en")
         val local = Locale(language.toString())
-        Timber.d("attachBaseContext: lang = $language")
-        Timber.d("---------------------------")
+        Timber.tag(Constants.TAG).d("MaintActivity: attachBaseContext: lang = $language")
+        Timber.tag(Constants.TAG).d("---------------------------")
         val localUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, local)
         super.attachBaseContext(localUpdatedContext)
     }
