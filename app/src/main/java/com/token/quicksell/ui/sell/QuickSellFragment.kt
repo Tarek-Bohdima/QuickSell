@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.token.quicksell.R
@@ -36,9 +35,9 @@ class QuickSellFragment : Fragment() {
 
         binding.recyclerviewIncluded.recyclerviewProducts.adapter = adapter
 
-        viewModel.products.observe(viewLifecycleOwner, Observer {
+        viewModel.products.observe(viewLifecycleOwner) {
             adapter.data = it
-        })
+        }
 
         binding.buttonPay.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_quickSellFragment_to_paymentFragment)

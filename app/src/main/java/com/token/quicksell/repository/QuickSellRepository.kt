@@ -14,7 +14,7 @@ import timber.log.Timber
 class QuickSellRepository(private val database: QuickSellDatabase) {
 
     fun getProducts(): LiveData<List<Product>> {
-        Timber.d(Constants.TAG, "QuickSellRepository: getProducts() called")
+        Timber.tag(Constants.TAG).d("QuickSellRepository: getProducts() called")
         return Transformations.map(
             database.quickQuickSellDao.getProducts()
         ) {
@@ -26,6 +26,6 @@ class QuickSellRepository(private val database: QuickSellDatabase) {
         withContext(Dispatchers.IO) {
             database.quickQuickSellDao.insertAll(*products.asDatabaseModel())
         }
-        Timber.d(Constants.TAG, "QuickSellRepository: insertProducts() called")
+        Timber.tag(Constants.TAG).d("QuickSellRepository: insertProducts() called")
     }
 }

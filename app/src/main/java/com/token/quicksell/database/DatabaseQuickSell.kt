@@ -16,7 +16,7 @@ data class DatabaseQuickSell constructor(
 )
 
 fun List<DatabaseQuickSell>.asDomainModel(): List<Product> {
-    Timber.d(Constants.TAG, "asDomainModel() called")
+    Timber.tag(Constants.TAG).d("DatabaseQuickSell: asDomainModel() called")
     return map {
         Product(
             id = it.id,
@@ -28,7 +28,7 @@ fun List<DatabaseQuickSell>.asDomainModel(): List<Product> {
 }
 
 fun List<Product>.asDatabaseModel(): Array<DatabaseQuickSell> {
-    Timber.d(Constants.TAG, "asDatabaseModel() called")
+    Timber.tag(Constants.TAG).d("DatabaseQuickSell: asDatabaseModel() called")
     return map {
         DatabaseQuickSell(
             id = it.id,

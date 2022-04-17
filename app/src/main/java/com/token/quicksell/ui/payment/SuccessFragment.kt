@@ -19,8 +19,8 @@ import com.token.quicksell.databinding.FragmentSuccessBinding
 
 class SuccessFragment : Fragment() {
 
-    lateinit var binding: FragmentSuccessBinding
-    lateinit var check: ImageView
+    private lateinit var binding: FragmentSuccessBinding
+    private lateinit var check: ImageView
 
     private val backPressedDispatcher = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {

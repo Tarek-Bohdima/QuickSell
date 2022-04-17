@@ -11,7 +11,6 @@ import com.token.quicksell.repository.QuickSellRepository
 import com.token.quicksell.utils.Constants
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.IllegalArgumentException
 
 class SellViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
@@ -19,7 +18,7 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
 
     val products = repository.getProducts()
 
-    val productsList = listOf<Product>(
+    private val productsList = listOf(
         Product(1, "Olive Oil", "Sauces and Oils", ""),
         Product(2, "Bread", "Bread and Bakery", ""),
         Product(3, "Milk", "Dairy", ""),
@@ -36,7 +35,7 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.insertProducts(productsList)
         }
-        Timber.d(Constants.TAG, "SellViewModel: init() called")
+        Timber.tag(Constants.TAG).d("SellViewModel: init() called")
     }
 
     /**
@@ -44,7 +43,8 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
      */
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            Timber.d(Constants.TAG,  "SellViewModel: Factory: create() called with: modelClass = $modelClass")
+            Timber.tag(Constants.TAG).d(
+                "SellViewModel: Factory: create() called with: modelClass = $modelClass")
             if (modelClass.isAssignableFrom(SellViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return SellViewModel(app) as T
