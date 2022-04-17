@@ -28,5 +28,20 @@
     <string name="selected_product_content_description">Selected product</string>
     <string name="text_amount_number" translatable="false">0</string>
     <string name="text_amount_label">Amount:</string>
+    <string name="text_button_one" translatable="false">1</string>
+    <string name="text_button_two" translatable="false">2</string>
+    <string name="text_button_three" translatable="false">3</string>
+    <string name="text_button_clear" translatable="false">C</string>
+    <string name="text_button_four" translatable="false">4</string>
+    <string name="text_button_five" translatable="false">5</string>
+    <string name="text_button_six" translatable="false">6</string>
+    <string name="text_button_delete" translatable="false">DEL</string>
+    <string name="text_button_seven" translatable="false">7</string>
+    <string name="text_button_eight" translatable="false">8</string>
+    <string name="text_button_nine" translatable="false">9</string>
+    <string name="text_button_ok" translatable="false">OK</string>
+    <string name="text_button_zero" translatable="false">0</string>
+    <string name="text_button_triple_zero" translatable="false">000</string>
+    <string name="text_button_double_zero" translatable="false">00</string>
 
 </resources>
