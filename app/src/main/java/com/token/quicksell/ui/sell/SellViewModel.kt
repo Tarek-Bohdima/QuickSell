@@ -19,16 +19,19 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
     val products = repository.getProducts()
 
     private val productsList = listOf(
-        Product(1, "Olive Oil", "Sauces and Oils", ""),
-        Product(2, "Bread", "Bread and Bakery", ""),
-        Product(3, "Milk", "Dairy", ""),
-        Product(4, "Coffee", "Beverages", ""),
-        Product(5, "Tea", "Beverages", ""),
-        Product(6, "Detergent", "Cleaners", ""),
-        Product(7, "Shampoo", "Personal Care", ""),
-        Product(8, "Coca-Cola", "Beverages", ""),
-        Product(9, "Apples", "Fruits", ""),
-        Product(10, "Tomatoes", "Vegetables", ""),
+        Product(1,
+            "Olive Oil",
+            "Sauces and Oils",
+            "https://d1fpwdq7hppksx.cloudfront.net/olive-oil.jpg"),
+        Product(2, "Bread", "Bread and Bakery", "https://d1fpwdq7hppksx.cloudfront.net/bread.jpg"),
+        Product(3, "Milk", "Dairy", "https://d1fpwdq7hppksx.cloudfront.net/milk.jpg"),
+        Product(4, "Coffee", "Beverages", "https://d1fpwdq7hppksx.cloudfront.net/coffee.jpg"),
+        Product(5, "Tea", "Beverages", "https://d1fpwdq7hppksx.cloudfront.net/tea.jpg"),
+        Product(6, "Detergent", "Cleaners", "https://d1fpwdq7hppksx.cloudfront.net/detergent.jpg"),
+        Product(7, "Shampoo", "Personal Care", "https://d1fpwdq7hppksx.cloudfront.net/shampoo.jpg"),
+        Product(8, "Coca-Cola", "Beverages", "https://d1fpwdq7hppksx.cloudfront.net/coca-cola.jpg"),
+        Product(9, "Apples", "Fruits", "https://d1fpwdq7hppksx.cloudfront.net/apples.jpg"),
+        Product(10, "Tomatoes", "Vegetables", "https://d1fpwdq7hppksx.cloudfront.net/tomatoes.jpg"),
     )
 
     init {
@@ -36,6 +39,10 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
             repository.insertProducts(productsList)
         }
         Timber.tag(Constants.TAG).d("SellViewModel: init() called")
+    }
+
+    fun onProductClicked(product: Product) {
+
     }
 
     /**

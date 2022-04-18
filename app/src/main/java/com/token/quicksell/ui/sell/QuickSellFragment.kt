@@ -30,13 +30,16 @@ class QuickSellFragment : Fragment() {
     ): View {
         binding = FragmentQuickSellBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
-        val adapter = ProductsAdapter()
+        val adapter = ProductsAdapter(ProductListener { product ->
+            viewModel.onProductClicked(product)
+        })
 
-        binding.recyclerviewIncluded.recyclerviewProducts.adapter = adapter
+        binding.recyclerviewProducts.adapter = adapter
 
         viewModel.products.observe(viewLifecycleOwner) {
-            adapter.data = it
+            adapter.submitList(it)
         }
 
         binding.buttonPay.setOnClickListener(

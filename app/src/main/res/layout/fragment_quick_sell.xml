@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.token.quicksell.ui.sell.SellViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,26 +30,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/recyclerview_included"
-            layout="@layout/products_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_products"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginTop="@dimen/margin_regular"
-            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/image_selected_product"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/products_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/products_textview"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_list_products" />
 
         <ImageView
             android:id="@+id/image_selected_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_regular"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/selected_product_content_description"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerview_included"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerview_products"
             tools:ignore="RedundantDescriptionCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -63,19 +72,20 @@
 
         <TextView
             android:id="@+id/text_category"
+            style="@style/text_product_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textview_product"
             android:layout_marginBottom="@dimen/margin_regular"
+            app:layout_constraintBottom_toTopOf="@+id/textview_product"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/image_selected_product"
             app:layout_constraintTop_toTopOf="@+id/image_selected_product"
-            tools:text="Sauces &amp; Oils"
-            style="@style/text_product_details" />
+            tools:text="Sauces &amp; Oils" />
 
         <TextView
             android:id="@+id/textview_product"
+            style="@style/text_product_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_regular"
@@ -85,11 +95,11 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/image_selected_product"
             app:layout_constraintTop_toBottomOf="@+id/text_category"
-            tools:text="Olive Oil"
-            style="@style/text_product_details"/>
+            tools:text="Olive Oil" />
 
         <TextView
             android:id="@+id/textview_amount"
+            style="@style/text_input_keyboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_amount_label"
@@ -97,11 +107,11 @@
             app:layout_constraintEnd_toStartOf="@+id/textview_input_amount"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            style="@style/text_input_keyboard" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textview_input_amount"
+            style="@style/text_input_keyboard"
             android:layout_width="@dimen/text_digits_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
@@ -111,8 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textview_amount"
-            tools:text="0000"
-            style="@style/text_input_keyboard" />
+            tools:text="0000" />
 
 
         <Button
@@ -157,6 +166,7 @@
 
         <Button
             android:id="@+id/button_c"
+            style="@style/button_keyboard_control"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/text_button_clear"
@@ -166,8 +176,7 @@
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toEndOf="@+id/button_3"
             app:layout_constraintTop_toTopOf="@+id/button_3"
-            app:layout_constraintVertical_bias="0.0"
-            style="@style/button_keyboard_control" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/button_4"
@@ -210,6 +219,7 @@
 
         <Button
             android:id="@+id/button_del"
+            style="@style/button_keyboard_control"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/text_button_delete"
@@ -218,8 +228,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toEndOf="@+id/button_6"
-            app:layout_constraintTop_toTopOf="@+id/button_6"
-            style="@style/button_keyboard_control" />
+            app:layout_constraintTop_toTopOf="@+id/button_6" />
 
         <Button
             android:id="@+id/button_7"
@@ -262,6 +271,7 @@
 
         <Button
             android:id="@+id/button_keyboard_ok"
+            style="@style/button_keyboard_control"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/text_button_ok"
@@ -270,8 +280,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toEndOf="@+id/button_9"
-            app:layout_constraintTop_toTopOf="@+id/button_9"
-            style="@style/button_keyboard_control" />
+            app:layout_constraintTop_toTopOf="@+id/button_9" />
 
         <Button
             android:id="@+id/button_0"
