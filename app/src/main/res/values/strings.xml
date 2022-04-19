@@ -45,5 +45,7 @@
     <string name="text_button_double_zero" translatable="false">00</string>
     <string name="error_msg_choose_product">Please select a product!</string>
     <string name="error_msg_amount_product">The amount has to be bigger than zero!</string>
+    <string name="total_price">Total price:</string>
+    <string name="total_price_amount" translatable="false"> %1$.2f %2$s </string>
 
 </resources>

@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentPaymentBinding
 
 
@@ -75,6 +77,13 @@ class PaymentFragment : Fragment() {
             it.findNavController()
                 .navigate(PaymentFragmentDirections.actionPaymentFragmentToHomeFragment())
         }
+
+        val args = PaymentFragmentArgs.fromBundle(requireArguments())
+        val price = args.totalPrice.toFloat()
+        binding.priceAmount.text = getString(R.string.total_price_amount, price, "RON")
+        Toast.makeText(requireActivity(), "totalPrice: ${args.totalPrice}", Toast.LENGTH_LONG)
+            .show()
+
         return binding.root
     }
 

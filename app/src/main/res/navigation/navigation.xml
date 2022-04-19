@@ -52,6 +52,9 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="totalPrice"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/successFragment"

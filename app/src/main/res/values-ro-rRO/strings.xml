@@ -21,5 +21,6 @@
     <string name="text_amount_label">Cantitate</string>
     <string name="error_msg_choose_product">Vă rugăm să selectați un produs!</string>
     <string name="error_msg_amount_product">Suma trebuie să fie mai mare decât zero!</string>
+    <string name="total_price">Pretul total</string>
 
 </resources>
