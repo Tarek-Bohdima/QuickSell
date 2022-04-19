@@ -1,10 +1,7 @@
 package com.token.quicksell.ui.sell
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.token.quicksell.database.getDatabase
 import com.token.quicksell.domain.Product
 import com.token.quicksell.repository.QuickSellRepository
@@ -34,6 +31,10 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
         Product(10, "Tomatoes", "Vegetables", "https://d1fpwdq7hppksx.cloudfront.net/tomatoes.jpg"),
     )
 
+    private val _selectedProduct = MutableLiveData<Product>()
+    val selectedProduct: LiveData<Product>
+        get() = _selectedProduct
+
     init {
         viewModelScope.launch {
             repository.insertProducts(productsList)
@@ -42,7 +43,7 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onProductClicked(product: Product) {
-
+        _selectedProduct.value = product
     }
 
     /**

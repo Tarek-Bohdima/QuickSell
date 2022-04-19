@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentQuickSellBinding
 
@@ -40,6 +41,12 @@ class QuickSellFragment : Fragment() {
 
         viewModel.products.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+
+        viewModel.selectedProduct.observe(viewLifecycleOwner) {
+            Glide.with(this).load(it.image).into(binding.imageSelectedProduct)
+            binding.textCategory.text = it.category
+            binding.textviewProduct.text = it.name
         }
 
         binding.buttonPay.setOnClickListener(

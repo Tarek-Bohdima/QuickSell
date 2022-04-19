@@ -7,7 +7,7 @@ import com.token.quicksell.R
 
 
 @BindingAdapter("productImageUrl")
-fun loadImage(imageView: ImageView, url: String?) {
+fun loadImage(imageView: ImageView, url: String) {
     Glide.with(imageView.context)
         .load(url)
         .error(R.drawable.placeholder)
