@@ -19,5 +19,7 @@
     <string name="spinner_flag_content_description">Steagul de țară al Limbii</string>
     <string name="selected_product_content_description">Produs</string>
     <string name="text_amount_label">Cantitate</string>
+    <string name="error_msg_choose_product">Vă rugăm să selectați un produs!</string>
+    <string name="error_msg_amount_product">Suma trebuie să fie mai mare decât zero!</string>
 
 </resources>

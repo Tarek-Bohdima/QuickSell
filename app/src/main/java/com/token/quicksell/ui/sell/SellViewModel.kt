@@ -12,6 +12,8 @@ import timber.log.Timber
 class SellViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
     private val repository = QuickSellRepository(database)
+    private val ZERO: String = "0"
+    private val DOUBLE_ZERO: String = "00"
 
     val products = repository.getProducts()
 
@@ -35,6 +37,10 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
     val selectedProduct: LiveData<Product>
         get() = _selectedProduct
 
+    private val _currentAmount = MutableLiveData<String>()
+    val currentAmount: LiveData<String>
+        get() = _currentAmount
+
     init {
         viewModelScope.launch {
             repository.insertProducts(productsList)
@@ -44,6 +50,51 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onProductClicked(product: Product) {
         _selectedProduct.value = product
+    }
+
+    fun button(currentValue: String, number: String) {
+        if (currentValue == ZERO) {
+            _currentAmount.value = number
+        } else if (currentValue.length < 4) {
+            _currentAmount.value = StringBuilder().append(currentValue).append(number).toString()
+        }
+    }
+
+    fun backSpace(currentValue: String) {
+        if (currentValue.length > 1) {
+            _currentAmount.value = currentValue.substring(0, currentValue.length - 1)
+        } else {
+            _currentAmount.value = ZERO
+        }
+    }
+
+    fun clearScreen() {
+        _currentAmount.value = ZERO
+    }
+
+    fun doubleZeroButtonClick(currentValue: String, doubleZero: String) {
+        if (currentValue == ZERO) {
+            _currentAmount.value = ZERO
+        } else if (currentValue.length < 3) {
+            _currentAmount.value =
+                StringBuilder().append(currentValue).append(doubleZero).toString()
+        } else if (currentValue.length < 4) {
+            _currentAmount.value = StringBuilder().append(currentValue).append(ZERO).toString()
+        }
+    }
+
+    fun tripleZeroButtonClick(currentValue: String, tripleZero: String) {
+        if (currentValue == ZERO) {
+            _currentAmount.value = ZERO
+        } else if (currentValue.length < 2) {
+            _currentAmount.value =
+                StringBuilder().append(currentValue).append(tripleZero).toString()
+        } else if (currentValue.length < 3) {
+            _currentAmount.value =
+                StringBuilder().append(currentValue).append(DOUBLE_ZERO).toString()
+        } else if (currentValue.length < 4) {
+            _currentAmount.value = StringBuilder().append(currentValue).append(ZERO).toString()
+        }
     }
 
     /**
