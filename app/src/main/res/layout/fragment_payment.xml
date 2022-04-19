@@ -17,6 +17,42 @@
             android:id="@+id/logo_included_payment"
             layout="@layout/logo_token" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="image_button_cash,image_button_card" />
+
+        <TextView
+            android:id="@+id/price_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:background="#C5E9F4"
+            android:padding="@dimen/margin_small"
+            android:text="@string/total_price"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            app:layout_constraintEnd_toStartOf="@+id/price_amount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo_included_payment" />
+
+        <TextView
+            android:id="@+id/price_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:background="#C5E9F4"
+            android:padding="@dimen/margin_small"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            app:layout_constraintBottom_toBottomOf="@+id/price_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/price_label"
+            app:layout_constraintTop_toTopOf="@+id/price_label" />
+
         <TextView
             android:id="@+id/pay_label"
             android:layout_width="wrap_content"
@@ -26,13 +62,7 @@
             android:text="@string/payment_label"
             android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo_included_payment" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="image_button_cash,image_button_card" />
+            app:layout_constraintTop_toBottomOf="@+id/price_label" />
 
         <ImageButton
             android:id="@+id/image_button_cash"
@@ -69,7 +99,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

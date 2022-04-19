@@ -1,5 +1,7 @@
 package com.token.quicksell.ui.sell
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentQuickSellBinding
 
 
@@ -72,9 +75,24 @@ class QuickSellFragment : Fragment() {
                 !binding.textCategory.text.isNullOrEmpty()
             ) {
                 it.findNavController()
-                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment())
+                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(binding.textviewInputAmount.text.toString().toInt()))
             } else if (binding.textviewInputAmount.text.toString().toInt() == 0) {
+                showDialog(getString(R.string.error_msg_amount_product))
             } else if (binding.textCategory.text.isNullOrEmpty()) {
+                showDialog(getString(R.string.error_msg_choose_product))
+            }
+        }
+
+        binding.keyboardLayout.buttonKeyboardOk.setOnClickListener {
+            if (binding.textviewInputAmount.text.toString().toInt() > 0 &&
+                !binding.textCategory.text.isNullOrEmpty()
+            ) {
+                it.findNavController()
+                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(binding.textviewInputAmount.text.toString().toInt()))
+            } else if (binding.textviewInputAmount.text.toString().toInt() == 0) {
+                showDialog(getString(R.string.error_msg_amount_product))
+            } else if (binding.textCategory.text.isNullOrEmpty()) {
+                showDialog(getString(R.string.error_msg_choose_product))
             }
         }
 
@@ -135,5 +153,20 @@ class QuickSellFragment : Fragment() {
             buttonDel.setOnClickListener { viewModel.backSpace(binding.textviewInputAmount.text.toString()) }
             buttonKeyboardOk
         }
+    }
+
+    private fun showDialog(msg: String) {
+        val alertDialog = AlertDialog.Builder(requireActivity())
+        alertDialog.apply {
+            setTitle("Attention")
+            setMessage(msg)
+            setPositiveButton("OK", object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog?.dismiss()
+                }
+            })
+            create()
+        }
+        alertDialog.show()
     }
 }
