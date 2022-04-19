@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/spinner_row_flag"
-            android:layout_width="@dimen/spinner_hight"
-            android:layout_height="@dimen/spinner_hight"
+            android:layout_width="@dimen/spinner_height"
+            android:layout_height="@dimen/spinner_height"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_small"
