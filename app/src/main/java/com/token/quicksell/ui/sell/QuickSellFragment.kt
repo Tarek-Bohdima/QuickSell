@@ -1,30 +1,24 @@
 package com.token.quicksell.ui.sell
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentQuickSellBinding
+import com.token.quicksell.utils.GlideApp
 
 
 class QuickSellFragment : Fragment() {
 
     private lateinit var binding: FragmentQuickSellBinding
-    private val viewModel: SellViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onViewCreated()"
-        }
-        ViewModelProvider(
-            this,
-            SellViewModel.Factory(activity.application)
-        )[SellViewModel::class.java]
+    private val viewModel by viewModels<SellViewModel> {
+        SellViewModel.Factory(requireActivity().application)
     }
 
     private val ZERO: String = "0"
@@ -42,7 +36,7 @@ class QuickSellFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuickSellBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -54,28 +48,29 @@ class QuickSellFragment : Fragment() {
 
         binding.recyclerviewProducts.adapter = adapter
 
-        viewModel.products.observe(viewLifecycleOwner) {
+        viewModel.products.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
-        }
+        })
 
-        viewModel.selectedProduct.observe(viewLifecycleOwner) {
-            Glide.with(this).load(it.image).into(binding.imageSelectedProduct)
+        viewModel.selectedProduct.observe(viewLifecycleOwner, Observer {
+            GlideApp.with(this).load(it.image).into(binding.imageSelectedProduct)
             binding.textCategory.text = it.category
             binding.textviewProduct.text = it.name
-        }
+        })
 
         initKeyboard()
 
-        viewModel.currentAmount.observe(viewLifecycleOwner) {
+        viewModel.currentAmount.observe(viewLifecycleOwner, Observer {
             binding.textviewInputAmount.text = it
-        }
+        })
 
         binding.buttonPay.setOnClickListener {
             if (binding.textviewInputAmount.text.toString().toInt() > 0 &&
                 !binding.textCategory.text.isNullOrEmpty()
             ) {
                 it.findNavController()
-                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(binding.textviewInputAmount.text.toString().toInt()))
+                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(
+                        binding.textviewInputAmount.text.toString().toInt()))
             } else if (binding.textviewInputAmount.text.toString().toInt() == 0) {
                 showDialog(getString(R.string.error_msg_amount_product))
             } else if (binding.textCategory.text.isNullOrEmpty()) {
@@ -88,7 +83,8 @@ class QuickSellFragment : Fragment() {
                 !binding.textCategory.text.isNullOrEmpty()
             ) {
                 it.findNavController()
-                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(binding.textviewInputAmount.text.toString().toInt()))
+                    .navigate(QuickSellFragmentDirections.actionQuickSellFragmentToPaymentFragment(
+                        binding.textviewInputAmount.text.toString().toInt()))
             } else if (binding.textviewInputAmount.text.toString().toInt() == 0) {
                 showDialog(getString(R.string.error_msg_amount_product))
             } else if (binding.textCategory.text.isNullOrEmpty()) {
@@ -160,11 +156,8 @@ class QuickSellFragment : Fragment() {
         alertDialog.apply {
             setTitle("Attention")
             setMessage(msg)
-            setPositiveButton("OK", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    dialog?.dismiss()
-                }
-            })
+            setPositiveButton("OK"
+            ) { dialog, which -> dialog?.dismiss() }
             create()
         }
         alertDialog.show()

@@ -13,7 +13,7 @@ class ProductsAdapter(private val clickListener: ProductListener) :
     ListAdapter<Product, ProductsAdapter.ProductItemViewHolder>(ProductDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int,
+        viewType: Int
     ): ProductItemViewHolder {
         return ProductItemViewHolder.from(parent)
     }
@@ -24,7 +24,7 @@ class ProductsAdapter(private val clickListener: ProductListener) :
     }
 
     class ProductItemViewHolder private constructor(
-        private val viewDataBinding: ItemListProductsBinding,
+        private val viewDataBinding: ItemListProductsBinding
     ) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         fun bind(product: Product, clickListener: ProductListener) {

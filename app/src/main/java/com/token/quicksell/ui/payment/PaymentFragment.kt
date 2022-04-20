@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -61,7 +60,7 @@ class PaymentFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -81,8 +80,6 @@ class PaymentFragment : Fragment() {
         val args = PaymentFragmentArgs.fromBundle(requireArguments())
         val price = args.totalPrice.toFloat()
         binding.priceAmount.text = getString(R.string.total_price_amount, price, "RON")
-        Toast.makeText(requireActivity(), "totalPrice: ${args.totalPrice}", Toast.LENGTH_LONG)
-            .show()
 
         return binding.root
     }

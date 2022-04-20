@@ -65,7 +65,7 @@ class SuccessFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
 
         binding = FragmentSuccessBinding.inflate(inflater, container, false)
