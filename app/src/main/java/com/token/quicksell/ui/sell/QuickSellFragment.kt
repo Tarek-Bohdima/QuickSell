@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.token.quicksell.R
 import com.token.quicksell.databinding.FragmentQuickSellBinding
@@ -36,7 +35,7 @@ class QuickSellFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentQuickSellBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -48,21 +47,21 @@ class QuickSellFragment : Fragment() {
 
         binding.recyclerviewProducts.adapter = adapter
 
-        viewModel.products.observe(viewLifecycleOwner, Observer {
+        viewModel.products.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
-        viewModel.selectedProduct.observe(viewLifecycleOwner, Observer {
+        viewModel.selectedProduct.observe(viewLifecycleOwner) {
             GlideApp.with(this).load(it.image).into(binding.imageSelectedProduct)
             binding.textCategory.text = it.category
             binding.textviewProduct.text = it.name
-        })
+        }
 
         initKeyboard()
 
-        viewModel.currentAmount.observe(viewLifecycleOwner, Observer {
+        viewModel.currentAmount.observe(viewLifecycleOwner) {
             binding.textviewInputAmount.text = it
-        })
+        }
 
         binding.buttonPay.setOnClickListener {
             if (binding.textviewInputAmount.text.toString().toInt() > 0 &&
@@ -157,7 +156,7 @@ class QuickSellFragment : Fragment() {
             setTitle("Attention")
             setMessage(msg)
             setPositiveButton("OK"
-            ) { dialog, which -> dialog?.dismiss() }
+            ) { dialog, _ -> dialog?.dismiss() }
             create()
         }
         alertDialog.show()

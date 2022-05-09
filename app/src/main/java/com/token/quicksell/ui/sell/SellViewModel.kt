@@ -17,6 +17,7 @@ class SellViewModel(application: Application) : AndroidViewModel(application) {
 
     val products = repository.getProducts()
 
+    // backend deleted
     private val productsList = listOf(
         Product(1,
             "Olive Oil",
