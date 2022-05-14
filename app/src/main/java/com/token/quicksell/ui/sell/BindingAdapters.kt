@@ -2,6 +2,7 @@ package com.token.quicksell.ui.sell
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.request.RequestOptions
 import com.token.quicksell.R
 import com.token.quicksell.utils.GlideApp
 
@@ -10,7 +11,8 @@ import com.token.quicksell.utils.GlideApp
 fun loadImage(imageView: ImageView, url: String) {
     GlideApp.with(imageView.context)
         .load(url)
-        .error(R.drawable.placeholder)
+        .apply(RequestOptions()
+            .error(R.drawable.placeholder))
         .centerCrop()
         .into(imageView)
 }
